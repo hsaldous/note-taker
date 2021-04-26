@@ -2,8 +2,8 @@ var path = require("path");
 var fs = require("fs");
 let noteData = require('../db/db.json');
 
+ // API Routes
 module.exports = function (app) {
-    // API ROUTES
     app.get("/api/notes", (req, res) => {
         fs.readFile("./db/db.json", (err, data) => {
             if (err) throw err;
@@ -14,7 +14,6 @@ module.exports = function (app) {
     app.post("/api/notes", (req, res) => {
         let inputtedData = req.body;
 
-        // Add a unique id to the note
         let uid = genRandomNum(1, 9999);
         inputtedData["id"] = uid;
 
@@ -39,7 +38,7 @@ module.exports = function (app) {
         res.end();
     });
     
-    // HTML ROUTES
+    // HTML Routes
     app.get("/notes", function (req, res) {
         res.sendFile(path.join(__dirname, "../public/notes.html"));
     });
