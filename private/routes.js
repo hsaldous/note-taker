@@ -1,11 +1,11 @@
 var path = require("path");
 var fs = require("fs");
-let noteData = require('./develop/db/db.json');
+let noteData = require('../db/db.json');
 
 module.exports = function (app) {
     // API ROUTES
     app.get("/api/notes", (req, res) => {
-        fs.readFile("./develop/db/db.json", (err, data) => {
+        fs.readFile("./db/db.json", (err, data) => {
             if (err) throw err;
             return res.json(JSON.parse(data));
         });
@@ -19,7 +19,7 @@ module.exports = function (app) {
         inputtedData["id"] = uid;
 
         noteData.push(inputtedData);
-        fs.writeFile('./develop/db/db.json', JSON.stringify(noteData), (err) => {
+        fs.writeFile('./db/db.json', JSON.stringify(noteData), (err) => {
             if (err) throw err;
             return res.json(inputtedData);
         });
@@ -32,7 +32,7 @@ module.exports = function (app) {
                 noteData.splice(i, 1);
             }
         }
-        fs.writeFile("./develop/db/db.json", JSON.stringify(noteData), (err) => {
+        fs.writeFile("./db/db.json", JSON.stringify(noteData), (err) => {
             if (err) throw err;
             return;
         });
@@ -41,11 +41,11 @@ module.exports = function (app) {
     
     // HTML ROUTES
     app.get("/notes", function (req, res) {
-        res.sendFile(path.join(__dirname, "./develop/public/notes.html"));
+        res.sendFile(path.join(__dirname, "../public/notes.html"));
     });
 
     app.get("*", function (req, res) {
-        res.sendFile(path.join(__dirname, "./develop/public/index.html"));
+        res.sendFile(path.join(__dirname, "./public/index.html"));
     });
 };
 
