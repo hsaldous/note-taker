@@ -1,5 +1,4 @@
-# note-taker
-
+# Note Taker App
 
 ## Task
 
@@ -34,3 +33,12 @@ WHEN I click on the Write icon in the navigation at the top of the page
 THEN I am presented with empty fields to enter a new note title and the note’s text in the right-hand column
 ```
 
+## Install
+
+Download the repo and run `npm install` from repo. 
+
+Then use `node server.js` to start the application.
+
+## View
+
+![Heroku Launch](https://hsa-note-taker.herokuapp.com/notes).
